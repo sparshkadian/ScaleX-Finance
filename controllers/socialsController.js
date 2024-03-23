@@ -2,6 +2,13 @@ import Socials from '../models/socialsModel.js';
 import Pair from '../models/tradingPairModel.js';
 import AppError from '../utils/AppError.js';
 
+const checkIfExists = (req, _, next) => {
+  const id = req.params.id;
+  if (!id) {
+    return next(new AppError('No such webiste exists', 400));
+  }
+};
+
 export const createSocials = async (req, res, next) => {
   try {
     const newSocials = await Socials.create(req.body);
@@ -33,6 +40,7 @@ export const getPairSocials = async (req, res, next) => {
 
 export const deleteSocials = async (req, res, next) => {
   try {
+    checkIfExists(req, _, next);
     await Socials.findByIdAndDelete(req.params.id);
     res.status(204).json({
       status: 'success',
@@ -44,6 +52,7 @@ export const deleteSocials = async (req, res, next) => {
 
 export const updateSocials = async (req, res, next) => {
   try {
+    checkIfExists(req, _, next);
     const updatedSocials = await Socials.findByIdAndUpdate(
       req.params.id,
       req.body,
