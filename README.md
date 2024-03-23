@@ -23,5 +23,4 @@ Navigate to the project directory:
 * For production mode: npm start
 
 ## 6.Access the Application
-* Once the application is running, you can access it in your web browser at http://localhost:4100
-* You can now interact with the API endpoints and test the application's functionality.
+* Once the application is running, you can interact with the API endpoints and test the application's functionality.
