@@ -10,7 +10,7 @@ Clone the repository to your local machine using the following command:
 
 ## 3.Install Dependencies
 Navigate to the project directory:
-* cd your-repo
+* cd ScaleX-Finance
 Install the required dependencies by running:
 * npm install
 
