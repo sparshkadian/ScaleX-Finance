@@ -19,13 +19,8 @@ Navigate to the project directory:
  * Replace your-mongodb-connection-string with the appropriate connection string for your MongoDB instance or Atlas cluster.
  
 ## 5.Run the Application
-* For development mode (with hot-reloading):
- npm run dev
-This command will start the application using nodemon, which automatically restarts the server whenever you make changes to the code.
-
-* For production mode:
-npm start
-This command will start the application using node.
+* For development mode (with hot-reloading): npm run dev
+* For production mode: npm start
 
 ## 6.Access the Application
 * Once the application is running, you can access it in your web browser at http://localhost:4100
