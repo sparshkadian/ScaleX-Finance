@@ -5,7 +5,7 @@ import AppError from '../utils/AppError.js';
 const checkIfExists = (req, _, next) => {
   const id = req.params.id;
   if (!id) {
-    return next(new AppError('No such webiste exists', 400));
+    return next(new AppError('No such Socials exists', 400));
   }
 };
 
@@ -40,7 +40,7 @@ export const getPairSocials = async (req, res, next) => {
 
 export const deleteSocials = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
+    checkIfExists(req, res, next);
     await Socials.findByIdAndDelete(req.params.id);
     res.status(204).json({
       status: 'success',
@@ -52,7 +52,7 @@ export const deleteSocials = async (req, res, next) => {
 
 export const updateSocials = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
+    checkIfExists(req, res, next);
     const updatedSocials = await Socials.findByIdAndUpdate(
       req.params.id,
       req.body,

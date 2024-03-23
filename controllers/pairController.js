@@ -4,9 +4,9 @@ import AppError from '../utils/AppError.js';
 // Fetch Prices for a Trading Pair
 
 const checkIfExists = (req, _, next) => {
-  const id = req.params.id;
+  const id = req.params.pairId;
   if (!id) {
-    return next(new AppError('No such webiste exists', 400));
+    return next(new AppError('No such Pair exists', 400));
   }
 };
 
@@ -71,11 +71,7 @@ export const getTradingPair = async (req, res, next) => {
 
 export const deleteTradingPair = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
-    if (!pairId) {
-      return next(new AppError('No such Pair exists', 400));
-    }
-
+    checkIfExists(req, res, next);
     await Pairs.findByIdAndDelete(req.params.pairId);
     res.status(204).json({
       status: 'success',
@@ -87,11 +83,7 @@ export const deleteTradingPair = async (req, res, next) => {
 
 export const updateTradingPair = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
-    if (!pairId) {
-      return next(new AppError('No such Pair exists', 400));
-    }
-
+    checkIfExists(req, res, next);
     const updatedPair = await Pairs.findByIdAndUpdate(
       req.params.pairId,
       req.body,

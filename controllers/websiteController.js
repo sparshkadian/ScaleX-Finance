@@ -2,7 +2,7 @@ import Website from '../models/websiteModel.js';
 import Pair from '../models/tradingPairModel.js';
 import AppError from '../utils/AppError.js';
 
-const checkIfExists = (req, _, next) => {
+const checkIfExists = (req, res, next) => {
   const id = req.params.id;
   if (!id) {
     return next(new AppError('No such webiste exists', 400));
@@ -40,7 +40,7 @@ export const getPairWebsites = async (req, res, next) => {
 
 export const deleteWebsite = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
+    checkIfExists(req, res, next);
     await Website.findByIdAndDelete(req.params.id);
     res.status(204).json({
       status: 'success',
@@ -52,7 +52,7 @@ export const deleteWebsite = async (req, res, next) => {
 
 export const updateWebsite = async (req, res, next) => {
   try {
-    checkIfExists(req, _, next);
+    checkIfExists(req, res, next);
     const updatedWebsite = await Website.findByIdAndUpdate(
       req.params.id,
       req.body,
