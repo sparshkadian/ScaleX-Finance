@@ -1,15 +1,14 @@
 import Pairs from '../models/tradingPairModel.js';
 import AppError from '../utils/AppError.js';
 
-// Fetch Prices for a Trading Pair
-
-const checkIfExists = (req, _, next) => {
-  const id = req.params.pairId;
-  if (!id) {
+const checkIfExists = async (req, _, next) => {
+  const pair = await Pairs.findOne({ _id: req.params.pairId });
+  if (!pair) {
     return next(new AppError('No such Pair exists', 400));
   }
 };
 
+// Fetch Prices for a Trading Pair
 export const getPrices = async (req, res) => {
   try {
     const prices = await Pairs.findOne(
@@ -71,7 +70,7 @@ export const getTradingPair = async (req, res, next) => {
 
 export const deleteTradingPair = async (req, res, next) => {
   try {
-    checkIfExists(req, res, next);
+    await checkIfExists(req, res, next);
     await Pairs.findByIdAndDelete(req.params.pairId);
     res.status(204).json({
       status: 'success',
@@ -83,7 +82,7 @@ export const deleteTradingPair = async (req, res, next) => {
 
 export const updateTradingPair = async (req, res, next) => {
   try {
-    checkIfExists(req, res, next);
+    await checkIfExists(req, res, next);
     const updatedPair = await Pairs.findByIdAndUpdate(
       req.params.pairId,
       req.body,
