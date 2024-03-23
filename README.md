@@ -11,8 +11,7 @@ Clone the repository to your local machine using the following command:
 ## 3.Install Dependencies
 Navigate to the project directory:
 * cd ScaleX-Finance
-Install the required dependencies by running:
-* npm install
+* Install the required dependencies by running: npm install
 
 ## 4.Configure Environment Variables
  * Create a .env file in the project root directory.
